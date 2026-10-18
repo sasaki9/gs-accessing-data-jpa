@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Task breakdown for the approved Java and Spring Boot upgrade plan.",
+  "tasks": [
+    {
+      "type": "upgrade",
+      "id": "001-upgrade-java21-spring-boot408",
+      "description": "Upgrade the complete application to Java 21 and Spring Boot 4.0.8, subject to resolving the documented compatibility gate. Addresses assessment issue: Java Version is not the latest LTS (azure-java-version-02000).",
+      "reason": "The assessment report identified Java 17 in the complete application, and the user explicitly requested Java 21 and Spring Boot 4.0.8.",
+      "requirements": "Scope all application/build changes to complete/ and preserve existing behavior and tests. Explicit targets are Java 17 -> Java 21 and Spring Boot 3.5.3 -> Spring Boot 4.0.8; do not silently change either target. Before implementation, verify authoritative compatibility requirements for Spring Boot 4.0.8, Java 21, its dependency/framework/Jakarta baseline, Gradle 9, and the Spring Boot Gradle Plugin. The repository Java-upgrade guideline currently associates Boot 4.x with Java 25; if authoritative requirements confirm Java 21 is unsupported, stop before changing files and request the user's decision. Assess Gradle 9 Wrapper and plugin compatibility, deprecated/incompatible Gradle configuration, and Java sourceCompatibility versus Java Toolchain. Review Maven Parent/plugins/dependencies and Maven Wrapper compatibility. Review .github/workflows/continuous-integration-build.yml and its external reusable workflow for Java 21 plus Maven and Gradle coverage; report inaccessible or missing CI coverage rather than assuming it. After compatibility is resolved and implementation is approved, make only the minimum required compatibility changes and validate Maven Wrapper build/tests, Gradle Wrapper build/tests, and CI. Do not modify initial/ or other sample projects, generated output, or unrelated files.",
+      "dependencies": [],
+      "successCriteria": {
+        "passBuild": "true",
+        "generateNewUnitTests": "false",
+        "passUnitTests": "true"
+      },
+      "kbId": "java-version-upgrade"
+    }
+  ],
+  "metadata": {
+    "planName": "java-version-upgrade-20261018",
+    "projectName": "gs-accessing-data-jpa",
+    "language": "java",
+    "createdAt": "2026-10-18T00:00:00Z",
+    "version": "1.0"
+  }
+}
